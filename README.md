@@ -42,8 +42,13 @@ implementation("com.github.chaerul24:ImageStory:v1.0.0")
 ```xml
 <id.chaerul.library.imagestory.ImageStory
         android:id="@+id/imageStory"
+<<<<<<< HEAD
         android:layout_width="80dp"
         android:layout_height="80dp"
+=======
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+>>>>>>> 1d85355 (Add scale attribute and handle image scale type)
         app:src="@drawable/ic_launcher_background"
         app:radius="50dp"
         app:borderWidth="3dp"

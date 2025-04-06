@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ImageViewCustom">
         <attr name="src" format="reference"/>
@@ -8,6 +7,16 @@
         <attr name="borderColor" format="color"/>
         <attr name="borderColorHint" format="color"/>
         <attr name="borderWidth" format="dimension"/>
-    </declare-styleable>
 
+        <!-- Ganti boolean jadi enum -->
+        <attr name="scale" format="enum">
+            <enum name="center" value="0" />
+            <enum name="centerCrop" value="1" />
+            <enum name="centerInside" value="2" />
+            <enum name="fitCenter" value="3" />
+            <enum name="fitStart" value="4" />
+            <enum name="fitEnd" value="5" />
+            <enum name="fitXY" value="6" />
+        </attr>
+    </declare-styleable>
 </resources>

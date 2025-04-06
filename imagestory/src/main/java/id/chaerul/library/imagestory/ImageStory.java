@@ -85,6 +85,33 @@ public class ImageStory extends FrameLayout {
         }
     }
 
+    public void setScale(ImageScale.ImageScaleType scale) {
+        switch (scale) {
+            case CENTER:
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                break;
+            case CENTER_CROP:
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                break;
+            case CENTER_INSIDE:
+                imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                break;
+            case FIT_CENTER:
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                break;
+            case FIT_START:
+                imageView.setScaleType(ImageView.ScaleType.FIT_START);
+                break;
+            case FIT_END:
+                imageView.setScaleType(ImageView.ScaleType.FIT_END);
+                break;
+            case FIT_XY:
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                break;
+        }
+    }
+
+
     public interface DownloadCallback {
         void onDownloaded(String message);
         void onError(String error);

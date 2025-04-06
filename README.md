@@ -41,15 +41,16 @@ implementation("com.github.chaerul24:ImageStory:1.0.2")
 
 ```xml
 <id.chaerul.library.imagestory.ImageStory
-        android:id="@+id/imageStory"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:src="@drawable/ic_launcher_background"
-        app:radius="50dp"
-        app:borderWidth="3dp"
-        app:countBorder="3"
-        app:borderColor="#4CAF50"
-        app:borderColorHint="#BDBDBD" />
+    android:id="@+id/imageStory3"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    app:src="@drawable/ic_launcher_background"
+    app:radius="50dp"
+    app:borderWidth="3dp"
+    app:countBorder="1"
+    app:scale="fitXY"
+    app:borderColor="#4CAF50"
+    app:borderColorHint="#BDBDBD" />
 ```
 
 ### Inisialisasi dari Java

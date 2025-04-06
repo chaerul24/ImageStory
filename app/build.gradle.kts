@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application") // tanpa versi
+    kotlin("android") // juga tanpa versi
 }
 
 android {

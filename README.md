@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 Kemudian tambahkan dependensi di `build.gradle` modul kamu:
 
 ```gradle
-implementation("com.github.chaerul24:ImageStory:1.0.12")
+implementation("com.github.chaerul24:ImageStory:1.0.2")
 ```
 
 > Pastikan versi disesuaikan dengan rilis di GitHub kamu.

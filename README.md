@@ -61,19 +61,19 @@ String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 ImageStory imageStory = findViewById(R.id.imageStory);
 imageStory.setScale(ImageScale.ImageScaleType.CENTER_CROP);
 imageStory.setCheckFile(
-        "https://avatars.githubusercontent.com/u/160778594?v=4",
-        path,
-        new ImageStory.DownloadCallback() {
-            @Override
-            public void onDownloaded(String s) {
-                Log.d("path", s);
-            }
-
-            @Override
-            public void onError(String s) {
-                Log.e("path", s);
-            }
+    "https://avatars.githubusercontent.com/u/160778594?v=4",
+    path,
+    new ImageStory.DownloadCallback() {
+        @Override
+        public void onDownloaded(String s) {
+            Log.d("path", s);
         }
+
+        @Override
+        public void onError(String s) {
+            Log.e("path", s);
+        }
+    }
 );
 
 imageStory.setRead(new boolean[] {false, true, false});

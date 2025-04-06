@@ -4,7 +4,7 @@
         <attr name="src" format="reference"/>
         <attr name="radius" format="dimension"/>
         <attr name="elevation" format="dimension"/>
-        <attr name="jumlahBorder" format="integer"/>
+        <attr name="countBorder" format="integer"/>
         <attr name="borderColor" format="color"/>
         <attr name="borderColorHint" format="color"/>
         <attr name="borderWidth" format="dimension"/>

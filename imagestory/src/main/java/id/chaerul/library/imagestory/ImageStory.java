@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -84,44 +85,50 @@ public class ImageStory extends FrameLayout {
         }
     }
 
-    public void setImageUrlDownload(String urlImage, String path, DownloadCallback callback) {
-        this.downloadCallback = callback;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if (callback != null) callback.onError("Izin WRITE_EXTERNAL_STORAGE belum diberikan.");
-                return;
-            }
-        }
-        downloadFile(urlImage, path, callback);
-    }
-
     public interface DownloadCallback {
         void onDownloaded(String message);
         void onError(String error);
     }
 
-    private void downloadFile(String urlImage, String path, DownloadCallback callback) {
-        String fileName = getFileNameFromUrl(urlImage);
+    public void setCheckFile(final String urlImage, final String path, final DownloadCallback callback) {
+        final String fileName = getFileNameFromUrl(urlImage);
+        File file = new File(path, fileName);
 
-        Glide.with(getContext())
-                .asBitmap()
-                .load(urlImage)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {}
+        if (file.exists()) {
+            Glide.with(getContext())
+                    .load(file)
+                    .into(imageView);
 
-                    @Override
-                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                        super.onLoadFailed(errorDrawable);
-                        if (callback != null) callback.onError("Gagal memuat gambar dari URL.");
-                    }
+            if (callback != null) {
+                callback.onDownloaded("File sudah ada");
+            }
+        } else {
+            Glide.with(getContext())
+                    .asBitmap()
+                    .load(urlImage)
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            imageView.setImageBitmap(resource);
 
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap bitmap, @Nullable com.bumptech.glide.request.transition.Transition<? super Bitmap> transition) {
-                        saveImageToDownloads(bitmap, path, fileName, callback);
-                    }
-                });
+                            // Simpan ke storage
+                            saveImageToDownloads(resource, path, fileName, callback);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            if (callback != null) {
+                                callback.onError("Gagal download gambar dari URL");
+                            }
+                        }
+                    });
+        }
     }
+
 
     private void saveImageToDownloads(Bitmap bitmap, String path, String fileName, DownloadCallback callback) {
         OutputStream outputStream;

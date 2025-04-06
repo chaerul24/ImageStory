@@ -65,20 +65,26 @@ imageStory.setRead(statusRead);
 ### Cek dan Download File Gambar dari URL
 
 ```java
-String url = "https://example.com/image.jpg";
-String path = getExternalFilesDir(null).getAbsolutePath();
+String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        
+        imageStory = findViewById(R.id.imageStory);
+        imageStory.setCheckFile(
+                "https://avatars.githubusercontent.com/u/160778594?v=4",
+                path,
+                new ImageStory.DownloadCallback() {
+                    @Override
+                    public void onDownloaded(String s) {
+                        Log.d("path", s);
+                    }
 
-imageStory.setCheckFile(url, path, new ImageStory.DownloadCallback() {
-    @Override
-    public void onDownloaded(String message) {
-        Log.d("ImageStory", message);
-    }
+                    @Override
+                    public void onError(String s) {
+                        Log.e("path", s);
+                    }
+                }
+        );
 
-    @Override
-    public void onError(String error) {
-        Log.e("ImageStory", error);
-    }
-});
+        imageStory.setRead(new boolean[] {false, true, false});
 ```
 
 ## Lisensi

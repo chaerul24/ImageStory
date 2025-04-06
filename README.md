@@ -17,11 +17,12 @@
 Tambahkan repository `jitpack.io` pada `settings.gradle` atau `build.gradle` project-level:
 
 ```gradle
-allprojects {
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven("https://jitpack.io")
     }
 }
 ```
@@ -29,7 +30,7 @@ allprojects {
 Kemudian tambahkan dependensi di `build.gradle` modul kamu:
 
 ```gradle
-implementation 'com.github.chaeruldev:imagestory:1.0.0'
+implementation("com.github.chaerul24:ImageStory:v1.0.0")
 ```
 
 > Pastikan versi disesuaikan dengan rilis di GitHub kamu.
@@ -40,15 +41,15 @@ implementation 'com.github.chaeruldev:imagestory:1.0.0'
 
 ```xml
 <id.chaerul.library.imagestory.ImageStory
-    android:id="@+id/imageStory"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    app:src="@drawable/sample_image"
-    app:radius="16dp"
-    app:borderWidth="8dp"
-    app:countBorder="3"
-    app:borderColor="#4CAF50"
-    app:borderColorHint="#BDBDBD" />
+        android:id="@+id/imageStory"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:src="@drawable/ic_launcher_background"
+        app:radius="50dp"
+        app:borderWidth="3dp"
+        app:countBorder="3"
+        app:borderColor="#4CAF50"
+        app:borderColorHint="#BDBDBD" />
 ```
 
 ### Inisialisasi dari Java

@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 Kemudian tambahkan dependensi di `build.gradle` modul kamu:
 
 ```gradle
-implementation("com.github.chaerul24:ImageStory:1.0.1")
+implementation("com.github.chaerul24:ImageStory:1.0.12")
 ```
 
 > Pastikan versi disesuaikan dengan rilis di GitHub kamu.
@@ -55,37 +55,31 @@ implementation("com.github.chaerul24:ImageStory:1.0.1")
 ### Inisialisasi dari Java
 
 ```java
-ImageStory imageStory = findViewById(R.id.imageStory);
-imageStory.setCountBorder(3);
-
-boolean[] statusRead = new boolean[]{false, true, false};
-imageStory.setRead(statusRead);
-```
-
-### Cek dan Download File Gambar dari URL
-
-```java
 String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         
-        imageStory = findViewById(R.id.imageStory);
-        imageStory.setCheckFile(
-                "https://avatars.githubusercontent.com/u/160778594?v=4",
-                path,
-                new ImageStory.DownloadCallback() {
-                    @Override
-                    public void onDownloaded(String s) {
-                        Log.d("path", s);
-                    }
+ImageStory imageStory = findViewById(R.id.imageStory);
+imageStory.setScale(ImageScale.ImageScaleType.CENTER_CROP);
+imageStory.setCheckFile(
+        "https://avatars.githubusercontent.com/u/160778594?v=4",
+        path,
+        new ImageStory.DownloadCallback() {
+            @Override
+            public void onDownloaded(String s) {
+                Log.d("path", s);
+            }
 
-                    @Override
-                    public void onError(String s) {
-                        Log.e("path", s);
-                    }
-                }
-        );
+            @Override
+            public void onError(String s) {
+                Log.e("path", s);
+            }
+        }
+);
 
-        imageStory.setRead(new boolean[] {false, true, false});
+imageStory.setRead(new boolean[] {false, true, false});
 ```
+
+True = status sudah di baca
+False = status belum di baca
 
 ## Lisensi
 
